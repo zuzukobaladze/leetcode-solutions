@@ -10,6 +10,8 @@ public class PermutationinString {
     int l2 = s2.length();
     int[] freqs = new int[26];
 
+    
+
     for (int i = 0; i < l1; i++) {
       freqs[s1.charAt(i) - 'a']--;
       freqs[s2.charAt(i) - 'a']++;
