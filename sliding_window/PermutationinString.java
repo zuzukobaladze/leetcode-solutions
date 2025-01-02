@@ -1,7 +1,6 @@
 public class PermutationinString {
   public static void main(String[] args) {
-    // System.out.println(checkInclusion("ab", "eidbaooo"));
-    System.out.println(checkInclusion("ab", "eidboaoo"));
+    // System.out.println(checkInclusion("ab", "eidbaooo"));kInclusion("ab", "eidboaoo"));
     // System.out.println(checkInclusion("abcdxabcde", "abcdeabcdx"));
   }
 
@@ -9,8 +8,6 @@ public class PermutationinString {
     int l1 = s1.length();
     int l2 = s2.length();
     int[] freqs = new int[26];
-
-    
 
     for (int i = 0; i < l1; i++) {
       freqs[s1.charAt(i) - 'a']--;
