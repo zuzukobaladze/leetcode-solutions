@@ -1,8 +1,4 @@
 public class PermutationinString {
-  public static void main(String[] args) {
-    // System.out.println(checkInclusion("ab", "eidbaooo"));kInclusion("ab", "eidboaoo"));
-    // System.out.println(checkInclusion("abcdxabcde", "abcdeabcdx"));
-  }
 
   public static boolean checkInclusion(String s1, String s2) {
     int l1 = s1.length();
