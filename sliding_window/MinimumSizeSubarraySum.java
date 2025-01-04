@@ -1,9 +1,4 @@
 public class MinimumSizeSubarraySum {
-  public static void main(String[] args) {
-    int[] arr = {2, 1, 5, 2, 3, 2};
-    int S = 7;
-    System.out.println(minSubArrayLen(S, arr));
-  }
 
 
   public static int minSubArrayLen(int target, int[] nums){
