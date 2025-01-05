@@ -1,11 +1,6 @@
 import java.util.HashMap;
 
 public class LongestSubstringKDistinct {
-  public static void main(String[] args) {
-    System.out.println(findLength("araaci", 2));
-    System.out.println(findLength("araaci", 1));
-    System.out.println(findLength("cbbebi", 3));
-  }
 
   public static int findLength(String s, int k) {
     if(k >= 26){
