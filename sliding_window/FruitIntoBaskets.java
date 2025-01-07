@@ -1,12 +1,6 @@
 import java.util.HashMap;
 
 public class FruitIntoBaskets {
-  public static void main(String[] args) {
-    int[] arr1 = {3,3,3,1,2,1,1,2,3,3,4};
-    int[] arr2 = {0,1,6,6,4,4,6};
-    System.out.println(totalFruit(arr1));
-    System.out.println(totalFruit(arr2));
-  }
 
   public static int totalFruit(int[] fruits) {
     int maxSize = 0;
