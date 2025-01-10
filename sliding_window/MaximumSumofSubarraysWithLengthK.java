@@ -1,8 +1,4 @@
 public class MaximumSumofSubarraysWithLengthK {
-  public static void main(String[] args) {
-    int[] nums = {1,5,4,2,9,9,9};
-    System.out.println(maxSubArrayK(nums, 3));
-  }
 
   public static int maxSubArrayK(int[] nums, int k){
       int max = Integer.MIN_VALUE;
