@@ -24,12 +24,12 @@ public class MinimumWindowSubstring {
 		return word;
 	}
 
-	public static boolean checkPositive(int[] arr){
-		for (int i : arr) {
-			if(i < 0){
-				return false;
-			}
-		}
-		return true;
-	}
+	// public static boolean checkPositive(int[] arr){
+	// 	for (int i : arr) {
+	// 		if(i < 0){
+	// 			return false;
+	// 		}
+	// 	}
+	// 	return true;
+	// }
 }
