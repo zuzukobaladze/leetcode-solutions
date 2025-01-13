@@ -3,41 +3,43 @@ import java.util.*;
 public class MinimumWindowSubstring {
 
 	public static void main(String[] args) {
-		String s = "AAABBBCCC";
-		String t = "ABCCC";
+		String s = "ADOBECODEBANC";
+		String t = "ABC";
 		System.out.println(minWindow(s, t));
 	}
 
-	public static String minWindow(String s, String t){
-		String word = "";
-		int l1 = s.length();
-		int matches = 0;
-		HashMap<Character, Integer> targetMap = new HashMap<>();
-
-		for (char c  : t.toCharArray()) {
-			targetMap.merge(c, 1, Integer::sum);
+	public static String minWindow(String s, String t) {
+		Map<Character, Integer> map = new HashMap<>();
+		for (char c : t.toCharArray()) {
+			map.merge(c, 1, Integer::sum);
 		}
 
-		for (int j = 0, i = 0; i < l1; i++) {
-			char right = s.charAt(i);
-			if(targetMap.containsKey(right)){ // Calculate characters present in map
-				targetMap.compute(right, (k, v) -> v - 1);
-				if(targetMap.get(right) == 0) matches++;
-			}
-
-			if(matches == targetMap.size()){
-				word = s.substring(j, i + 1);
-				while(matches == targetMap.size()){
-					char left = s.charAt(j);
-					if(targetMap.containsKey(left)){
-						targetMap.merge(left, 1, Integer::sum);
-						matches--;
-					}
-					j++;
+		int startIndex = 0, minLen = Integer.MAX_VALUE;
+		int count = map.size();
+		for (int left = 0, right = 0; right < s.length(); right++) {
+			char cRight = s.charAt(right);
+			if (map.containsKey(cRight)) {
+				map.compute(cRight, (k, v) -> v - 1);
+				if (map.get(cRight) == 0) {
+					count -= 1;
 				}
 			}
-		}
 
-		return word;
+			while (count <= 0) {
+				char cLeft = s.charAt(left);
+				if (map.containsKey(cLeft)) {
+					map.merge(cLeft, 1, Integer::sum);
+					if (map.get(cLeft) > 0) {
+						count += 1;
+					}
+				}
+				if (right - left + 1 < minLen) {
+					startIndex = left;
+					minLen = right - left + 1;
+				}
+				left++;
+			}
+		}
+		return minLen == Integer.MAX_VALUE ? "" : s.substring(startIndex, startIndex + minLen);
 	}
 }
