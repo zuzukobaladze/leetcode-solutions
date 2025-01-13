@@ -1,12 +1,16 @@
 import java.util.*;
 
 public class MinimumWindowSubstring {
+
+	public static void main(String[] args) {
+		
+	}
+
 	public static String minWindow(String s, String t){
 		String word = "";
 		int l1 = s.length();
 		int l2 = t.length();
 		int matches = 0;
-		int nextIndex = 0;
 		HashMap<Character, Integer> targetMap = new HashMap<>();
 
 		for (char c  : t.toCharArray()) {
@@ -21,7 +25,15 @@ public class MinimumWindowSubstring {
 			}
 
 			if(matches == l2){
-				
+				word = s.substring(j, i + 1);
+				while(matches == l2){
+					char left = s.charAt(j);
+					if(targetMap.containsKey(left)){
+						targetMap.merge(left, 1, Integer::sum);
+						matches--;
+					}
+					j++;
+				}
 			}
 		}
 
