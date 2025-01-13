@@ -15,12 +15,25 @@ public class MinimumWindowSubstring {
 
 		for (int j = 0, i = 0; i < l1; i++) {
 			char right = s.charAt(i);
-			if(targetMap.containsKey(right)){
+			if(targetMap.containsKey(right)){ // Calculate characters present in map
 				targetMap.compute(right, (k, v) -> v - 1);
 				if(targetMap.get(right) == 0) matches++;
+			}
+
+			if(matches == l2){
+				
 			}
 		}
 
 		return word;
 	}
+
+	// public static boolean checkPositive(int[] arr){
+	// 	for (int i : arr) {
+	// 		if(i < 0){
+	// 			return false;
+	// 		}
+	// 	}
+	// 	return true;
+	// }
 }
