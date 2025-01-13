@@ -3,13 +3,14 @@ import java.util.*;
 public class MinimumWindowSubstring {
 
 	public static void main(String[] args) {
-		
+		String s = "AAABBBCCC";
+		String t = "ABCCC";
+		System.out.println(minWindow(s, t));
 	}
 
 	public static String minWindow(String s, String t){
 		String word = "";
 		int l1 = s.length();
-		int l2 = t.length();
 		int matches = 0;
 		HashMap<Character, Integer> targetMap = new HashMap<>();
 
@@ -24,9 +25,9 @@ public class MinimumWindowSubstring {
 				if(targetMap.get(right) == 0) matches++;
 			}
 
-			if(matches == l2){
+			if(matches == targetMap.size()){
 				word = s.substring(j, i + 1);
-				while(matches == l2){
+				while(matches == targetMap.size()){
 					char left = s.charAt(j);
 					if(targetMap.containsKey(left)){
 						targetMap.merge(left, 1, Integer::sum);
@@ -39,13 +40,4 @@ public class MinimumWindowSubstring {
 
 		return word;
 	}
-
-	// public static boolean checkPositive(int[] arr){
-	// 	for (int i : arr) {
-	// 		if(i < 0){
-	// 			return false;
-	// 		}
-	// 	}
-	// 	return true;
-	// }
 }
