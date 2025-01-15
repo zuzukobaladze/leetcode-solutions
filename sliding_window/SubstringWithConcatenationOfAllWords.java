@@ -2,7 +2,7 @@ import java.util.*;
 
 public class SubstringWithConcatenationOfAllWords {
   public static void main(String[] args) {
-    String s = "barfoofoobarthefoobarman";
+    String s = "bbarfoofoobarthefoobarman";
     String[] words = { "bar", "foo", "the" };
     System.out.println(findSubstring(s, words));
   }
@@ -21,21 +21,23 @@ public class SubstringWithConcatenationOfAllWords {
       String curWord = s.substring(i, i + wordLength); // Get current word
       wordsSeen.merge(curWord, 1, Integer::sum); // Add current words as seen in map
 
-      if (!wordMap.containsKey(curWord) || wordsSeen.get(curWord) != wordMap.get(curWord)) { // If current word does not appear or we dont have same amount in maps
+      if (!wordMap.containsKey(curWord)) { // If current word does not appear
         wordsSeen.clear(); // Clear current map
-        j = i + 1; // Jump to next word's start index
-        i++;
+        i++; // Jump to next index
+        j = i; // Start index to i
+      } else if (wordsSeen.get(curWord) != wordMap.get(curWord)) { // If current word does not appear same amount in both maps
+        wordsSeen.clear();
+        j = i; // Change start index
       } else {
-        i += wordLength;
+        i += wordLength; // Since valid, jump to next possible word
       }
 
-      if (i - j + 1 == wordLength * words.length) { // Check if we have needed length of conc. words
-        indices.add(j);
+      if (i - j == wordLength * words.length) { // Check if we have needed length of conc. words
+        indices.add(j); // Add start index to result
         wordsSeen.clear();
-        j += wordLength;
+        j += wordLength; // Jump to next word's start index
       }
     }
-
     return indices;
   }
 }
