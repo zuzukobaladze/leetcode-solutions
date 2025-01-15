@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class ConcatenatedWords {
+public class SubstringWithConcatenationOfAllWords {
   public static void main(String[] args) {
     
   }
 
-  public List<String> findAllConcatenatedWordsInADict(String[] words) {
+  public List<String> findSubstring(String s, String[] words) {
     HashMap<String, Integer> wordMap = new HashMap<>();
     for (String word : words) {
       wordMap.merge(word, 1, Integer::sum);
