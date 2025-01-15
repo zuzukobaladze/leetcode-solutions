@@ -2,40 +2,58 @@ import java.util.*;
 
 public class SubstringWithConcatenationOfAllWords {
   public static void main(String[] args) {
-    String s = "bbarfoofoobarthefoobarman";
-    String[] words = { "bar", "foo", "the" };
+    String s = "wordgoodgoodgoodbestword";
+    String[] words = { "word", "good", "best", "good" };
     System.out.println(findSubstring(s, words));
   }
 
   public static List<Integer> findSubstring(String s, String[] words) {
-    ArrayList<Integer> indices = new ArrayList<>(); // Result array
-    HashMap<String, Integer> wordMap = new HashMap<>(); // Map of words
-    HashMap<String, Integer> wordsSeen = new HashMap<>(); // Map of current words in loop
-    int wordLength = words[0].length(); // Length of each word in words
+    Map<String, Integer> wordCount = new HashMap<>();
 
-    for (String word : words) { // Add words as map
-      wordMap.merge(word, 1, Integer::sum);
+    // Create and populate a map with the count of each unique word
+    for (String word : words) {
+      wordCount.merge(word, 1, Integer::sum);
     }
 
-    for (int i = 0, j = 0; i < s.length() - wordLength;) {
-      String curWord = s.substring(i, i + wordLength); // Get current word
-      wordsSeen.merge(curWord, 1, Integer::sum); // Add current words as seen in map
+    int strLength = s.length(), numOfWords = words.length;
+    int wordLength = words[0].length(); // Assume all words are the same length
+    List<Integer> indices = new ArrayList<>();
 
-      if (!wordMap.containsKey(curWord)) { // If current word does not appear
-        wordsSeen.clear(); // Clear current map
-        i++; // Jump to next index
-        j = i; // Start index to i
-      } else if (wordsSeen.get(curWord) != wordMap.get(curWord)) { // If current word does not appear same amount in both maps
-        wordsSeen.clear();
-        j = i; // Change start index
-      } else {
-        i += wordLength; // Since valid, jump to next possible word
-      }
+    // Iterate over all possible word start indices to check for valid substrings
+    for (int i = 0; i < wordLength; ++i) {
+      Map<String, Integer> currentCount = new HashMap<>();
+      int left = i, right = i;
+      int totalWords = 0;
 
-      if (i - j == wordLength * words.length) { // Check if we have needed length of conc. words
-        indices.add(j); // Add start index to result
-        wordsSeen.clear();
-        j += wordLength; // Jump to next word's start index
+      // Expand the window to the right, adding words into current window count
+      while (right + wordLength <= strLength) {
+        String sub = s.substring(right, right + wordLength);
+        right += wordLength;
+
+        // If the word is not in the original word list, reset the window
+        if (!wordCount.containsKey(sub)) {
+          currentCount.clear();
+          left = right;
+          totalWords = 0;
+          continue;
+        }
+
+        // Increase the count for the current word in the window
+        currentCount.merge(sub, 1, Integer::sum);
+        ++totalWords;
+
+        // If a word count exceeds its count in wordCount, reduce from left side
+        while (currentCount.get(sub) > wordCount.get(sub)) {
+          String removed = s.substring(left, left + wordLength);
+          left += wordLength;
+          currentCount.merge(removed, -1, Integer::sum);
+          totalWords--;
+        }
+
+        // If the total words reached the number of words, a valid substring is found
+        if (totalWords == numOfWords) {
+          indices.add(left);
+        }
       }
     }
     return indices;
