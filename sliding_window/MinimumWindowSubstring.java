@@ -2,12 +2,6 @@ import java.util.*;
 
 public class MinimumWindowSubstring {
 
-	public static void main(String[] args) {
-		String s = "ADOBECODEBANC";
-		String t = "ABC";
-		System.out.println(minWindow(s, t));
-	}
-
 	public static String minWindow(String s, String t) {
 		Map<Character, Integer> map = new HashMap<>();
 		for (char c : t.toCharArray()) {
