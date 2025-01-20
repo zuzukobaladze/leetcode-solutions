@@ -2,9 +2,6 @@ import java.util.*;
 
 public class SubstringWithConcatenationOfAllWords {
   public static void main(String[] args) {
-    // String s = "wordgoodgoodgoodbestword";
-    // String[] words = { "word", "good", "best", "good" };
-    // System.out.println(findSubstring(s, words));
   }
 
   public static List<Integer> findSubstring(String s, String[] words) {
