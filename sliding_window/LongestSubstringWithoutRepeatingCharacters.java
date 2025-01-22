@@ -1,13 +1,6 @@
 import java.util.*;
 
 public class LongestSubstringWithoutRepeatingCharacters {
-  public static void main(String[] args) {
-    String s1 = "abcabcbb";
-    String s2 = "bbbbbb";
-    System.out.println(lengthOfLongestSubstring(s1));
-    System.out.println(lengthOfLongestSubstring(s2));
-  }
-
   public static int lengthOfLongestSubstring(String s) {
     int maxLength = 0;
     Map<Character, Integer> charIndexMap = new HashMap<>();
