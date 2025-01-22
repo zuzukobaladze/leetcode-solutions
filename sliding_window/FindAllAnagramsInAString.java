@@ -2,10 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindAllAnagramsInAString {
-  public static void main(String[] args) {
-    System.out.println(findAnagrams("cbaebabacd", "abc"));
-    System.out.println(findAnagrams("baa", "aa"));
-  }
 
   public static List<Integer> findAnagrams(String s, String p) {
     ArrayList<Integer> list = new ArrayList<>();
