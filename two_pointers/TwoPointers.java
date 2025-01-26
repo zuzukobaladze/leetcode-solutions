@@ -3,7 +3,7 @@ class TwoPointers {
     System.out.println("Two Pointers");
   }
 
-  public static void twoPointers(){
-    
+  public static int twoPointers(){
+    return -1;
   }
 }
