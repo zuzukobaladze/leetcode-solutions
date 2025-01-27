@@ -8,7 +8,7 @@ public class FruitIntoBaskets {
     for (int j = 0, i = 0; i < fruits.length; i++) {
       freq.merge(fruits[i], 1, Integer::sum);
       while (freq.size() > 2) {
-        freq.compute(fruits[j], (k, v) -> (v == 1) ? null : v - 1);
+        freq.merge(fruits[j], -1, Integer::sum);
         j++;
       }
       maxSize = Math.max(maxSize, i - j + 1);

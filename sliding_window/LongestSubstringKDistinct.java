@@ -11,7 +11,7 @@ public class LongestSubstringKDistinct {
     for (int j = 0, i = 0; i < s.length(); i++) {
       charMap.merge(s.charAt(i), 1, Integer::sum);
       while (charMap.size() > k) {
-        charMap.compute(s.charAt(j), (key, value) -> (value == 1) ? null : value - 1);
+        charMap.merge(s.charAt(j), -1, Integer::sum);
         j++;
       }
       maxLen = Math.max(maxLen, i - j + 1);

@@ -13,7 +13,7 @@ public class MinimumWindowSubstring {
 		for (int left = 0, right = 0; right < s.length(); right++) {
 			char cRight = s.charAt(right);
 			if (map.containsKey(cRight)) {
-				map.compute(cRight, (k, v) -> v - 1);
+				map.merge(cRight, -1, Integer::sum);
 				if (map.get(cRight) == 0) {
 					count -= 1;
 				}

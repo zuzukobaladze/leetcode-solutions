@@ -10,7 +10,7 @@ public class LongestRepeatingCharacterReplacement {
       charMap.merge(s.charAt(i), 1, Integer::sum);
       mostRepeatedCount = Math.max(charMap.get(s.charAt(i)), mostRepeatedCount);
       if(i - j + 1 - mostRepeatedCount > k){
-        charMap.compute(s.charAt(j), (key, val) -> val - 1);
+        charMap.merge(s.charAt(j), -1, Integer::sum);
         j++;
       }
       maxLen = Math.max(maxLen, i - j + 1);
