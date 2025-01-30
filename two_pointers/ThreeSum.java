@@ -2,10 +2,6 @@ import java.util.*;
 
 public class ThreeSum {
 
-  public static void main(String[] args) {
-    System.out.println(threeSum(new int[] { -4, -2, -1, -1, 0, 1, 2, 2, 4, 6 }));
-  }
-
   public static List<List<Integer>> threeSum(int[] nums) {
     List<List<Integer>> res = new ArrayList<>();
     Arrays.sort(nums);
