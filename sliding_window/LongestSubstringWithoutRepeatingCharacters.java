@@ -28,7 +28,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         //   }
         // return maxLength;
 
-        
+
         // int maxLen = 0;
         // Set<Character> letters = new HashSet<>();
         // for (int j = 0, i = 0; i < s.length(); i++) {
